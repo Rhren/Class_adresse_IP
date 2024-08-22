@@ -32,16 +32,35 @@ void recuperation_ip()
 	int end;
 	int i=0;
 	int nbr=0;
+	int j=0;
+	int n=0;
+	
 	chaine=getenv("QUERY_STRING");
-	while(chaine[i] != '\0')
+	while(chaine[j] != '\0')
 	{
-		if(chaine[i] == '.' && chaine[i+1] != '\0' && chaine[i+1] != '.' && chaine[i+1] != '+' )
-		{
+		 
+		if(chaine[j] != '0' && chaine[j] != '1' && chaine[j] != '2' && chaine[j] != '3' && chaine[j] != '4' && chaine[j] != '5' && chaine[j] !='6' && chaine[j] != '7' && chaine[j] != '8' && chaine[j] != '9')
+			{
+				n=1;
+				
+			}
 		
-			nbr++;
-		}	
-		i++;
+		
+		j++;
 	}
+	
+	if(n == 0)
+	{
+		
+		while(chaine[i] != '\0')
+		{
+			if(chaine[i] == '.' && chaine[i+1] != '\0' && chaine[i+1] != '.' && chaine[i+1] != '+'  )
+			{
+		
+				nbr++;
+			}	
+			i++;
+		}
 	if(nbr == 3 )
 	{
 		token=strtok(chaine,"=");
@@ -94,6 +113,18 @@ void recuperation_ip()
 				   <BR><BR>\
 				   <INPUT TYPE=\"SUBMIT\" VALUE=\"Envoyer\" />\n\
 				   </FORM></DIV>\n");
+	}
+	}
+	else
+	{
+			printf("<DIV class=\"deco\" ><FORM ACTION=\"envoyer.cgi\" METHOD=\"GET\">\n\
+				<B>VEUILLEZ RETAPER VOTRE ADRESSE IP</B>\
+				 <BR><BR>\
+				  <INPUT TYPE=\"TEXT\" placeholder=\"Entrer votre adresse\" NAME=\"adresse\">\
+				   <BR><BR>\
+				   <INPUT TYPE=\"SUBMIT\" VALUE=\"Envoyer\" />\n\
+				   </FORM></DIV>\n");
+		
 	}
 }
 void class_ip(int first,int second,int third,int end)
